@@ -340,7 +340,7 @@ resource "google_compute_security_policy" "policy" {
           enforce_on_key_name = lookup(rule.value["rate_limit_options"], "enforce_on_key_configs") == null ? lookup(rule.value["rate_limit_options"], "enforce_on_key_name", null) : null
 
           dynamic "enforce_on_key_configs" {
-            for_each = lookup(rule.value["rate_limit_options"], "enforce_on_key_configs") == null ? {} : { for x in lookup(rule.value["rate_limit_options"], "enforce_on_key_configs") : x.enforce_on_key_type => x }
+            for_each = lookup(rule.value["rate_limit_options"], "enforce_on_key_configs") == null ? {} : { for x in lookup(rule.value["rate_limit_options"], "enforce_on_key_configs") : x.enforce_on_key_type => x... }
             content {
               enforce_on_key_type = enforce_on_key_configs.value.enforce_on_key_type
               enforce_on_key_name = enforce_on_key_configs.value.enforce_on_key_name
